@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% comment %} 
+extends: 상속을 받겠다라는 키워드
+  - 항상 최상단에 작성해주어야 한다!
+{% endcomment %}
+
+{% comment %} 여기는 랜더링 안됨 {% endcomment %}
+<h1>할 일 목록</h1>
+
+{% block styles %}
+<style>
+  h1 {
+    color: red;
+  }
+</style>
+{% endblock styles %}
+
+
+{% block contents %}
+
+  <h1>할 일 목록</h1>
+
+  {% comment %} {{todos}}   {# context의 키값#} {% endcomment %}
+  {% for todo in todos %}
+    <p>번호: {{todo.id}}</p>
+    <p>제목: {{todo.title}}</p>
+    <p>내용: {{todo.content}}</p>
+    <p>완료여부: {{todo.isDone}}</p>
+    <hr>
+  {% endfor %}
+
+{% endblock contents %}
+
+{% block test %}
+  <h1>test 블록 재정의</h1>
+{% endblock test %}

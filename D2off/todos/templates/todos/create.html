@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block contents %}
+  <h1>할 일 생성</h1>
+
+  <form action="" method = "POST">
+    {% csrf_token %}
+    <label for="title">제목</label>
+    <input type="text" id="title", name="title"><br>
+
+    <label for="title">내용</label>
+    <input type="text" id="content", name="content"><br>
+
+    <label for="title">완료여부</label>
+    <input type="checkbox" id="isDone", name="isDone"><br>
+
+    <button type="submit">추가</button>
+  </form>
+{% endblock contents %}
+
+{% block test %}
+  <h1>test 블록 재정의</h1>
+{% endblock test %}

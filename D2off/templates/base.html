@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1 {
+      text-align: center;
+    }
+  </style>
+  {% block styles %}
+  {% endblock styles %}
+</head>
+<body>
+  {% comment %} 
+    include 태그: html 파일 분리시 import 기능
+  {% endcomment %}
+  {% include "_navbar.html" %}
+  {% comment %} 
+    block 태그: 상속 시 바꿔치기 할 내용
+  {% endcomment %}
+  {% block contents %}
+    <h1>네비게이션 바</h1>
+  {% endblock contents %}
+
+  {% comment %} {% block test %}
+    <h1>네비게이션 바2</h1>
+  {% endblock test %} {% endcomment %}
+</body>
+</html>

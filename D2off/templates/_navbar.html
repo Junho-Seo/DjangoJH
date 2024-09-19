@@ -1,0 +1,24 @@
+{% comment %} 내부에서 활용되는 파일은 앞에 언더바를 붙여 이름 작성(권장사항) {% endcomment %}
+<style>
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: green;
+  }
+</style>
+
+<nav>
+  {% comment %} 
+    href 안에 아무것도 적지 않으면 현재 경로를 의미
+
+    주소를 적을 땐 항상 "절대 경로"로 작성! (버그 최소화)
+    맨 앞 /는 경로의 시작을 의미
+  {% endcomment %}
+  <a href="/todos/">할 일 목록</a>
+  {% comment %}
+    create/: 현재 경로 뒤에 create/ 를 붙여라 라는 의미
+  {% endcomment %}
+  <a href="/todos/create/">할 일 생성</a>
+</nav>
