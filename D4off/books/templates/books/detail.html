@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>{{ book.title }}</h1>
+
+<p><b>도서번호: {{ book.isbn }}</b></p>
+{# django의 특수한 기능 forloop; 인덱스로 활용하기 좋다. reversecounter도 존재 #}
+<p><b>출간연도: {{ book.pub_date }}</b></p>
+{# variable routing #}
+<p>내용: {{ book.description}}</p>
+{# DTL: truncatewords. 글자 수 제한 기능 #}
+<p>작가: {{ book.author }}</p>
+<p>가격: {{ book.price_sales }}</p>
+<hr>
+
+{% endblock contents %}
+
