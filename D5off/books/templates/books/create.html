@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>생성 페이지</h1>
+
+<!--action 주소 method 행위-->
+<form action="{% url "books:create" %}" method="POST">
+  {% csrf_token %}
+
+  <label for="isbn">도서번호: </label>
+  <input type="text" name="isbn">
+  <br>
+
+  <label for="title">제목: </label>
+  <input type="text" name="title">
+  <br>
+
+  <label for="description">내용: </label>
+  <textarea name="description" name="description" rows='5' id=""></textarea>
+  <br>
+
+  <label for="price_sales">가격: </label>
+  <input type="number" name="price_sales">
+  <br>
+
+  <label for="author">작가: </label>
+  <input type="text" name="author">
+  <br>
+  
+  <label for="pub_date">출간년도: </label>
+  <input type="date" name="pub_date">
+  <br>
+
+  <button>생성하기</button>
+</form>
+
+{% endblock contents %}

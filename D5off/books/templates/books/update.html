@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>수정 페이지</h1>
+
+<!--action 주소 method 행위-->
+<form action="{% url "books:update" book.pk %}" method="POST">
+  {% csrf_token %}
+
+  <label for="isbn">도서번호: </label>
+  <input type="text" name="isbn" value = "{{ book.isbn }}">
+  <!--우리가 쓴 글 전체가 하나의 문자열이다 라고 표시하기 위해 중괄호 전체를 쌍따옴표(혹은 따옴표)
+  로 처리해준다.
+  처리하지 않으면 개행 혹은 빈 칸에서 내용이 잘린다.
+  -->
+  <br>
+
+  <label for="title">제목: </label>
+  <input type="text" name="title" value = "{{ book.title }}">
+  <br>
+
+  <label for="description">내용: </label>
+  <textarea name="description" name="description" rows='7' id="">{{ book.description }}</textarea>
+  <br>
+
+  <label for="price_sales">가격: </label>
+  <input type="number" name="price_sales" value = "{{ book.price_sales }}">
+  <br>
+
+  <label for="author">작가: </label>
+  <input type="text" name="author" value = "{{ book.author }}">
+  <br>
+
+  <label for="pub_date">출간년도: </label>
+  <input type="date" name="pub_date" value = "{{ book.pub_date|date:'Y-m-d' }}">
+  <br>
+
+  <button>수정하기</button>
+</form>
+
+{% endblock contents %}

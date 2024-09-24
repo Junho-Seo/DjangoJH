@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>도서 관리 시스템</h1>
+
+<p>전체 도서 수: {{ total_count }}권</p>
+
+<!--가격 입력 폼-->
+<form action="" method = "GET" >
+  <label for="max_price">최대 가격</label>
+  <input type="number" id="max_price" name="max_price" value="{{request.GET.max_price}}">
+  <!--value: 기본값. 본 예제에서는 입력값을 기본값으로 지정(GET 활용)-->
+  <button>검색</button>
+</form>
+
+{% comment %} 
+1. 몇 번째 글인지 (index)
+2. 제목
+3. 내용 (5단어만 출력)
+4. 작가
+5. 가격
+{% endcomment %}
+{% for book in books %}
+    <p><b>번호: {{ forloop.revcounter }}</b></p>
+    {# django의 특수한 기능 forloop; 인덱스로 활용하기 좋다. revcounter도 존재 #}
+    <a href={% url "books:detail" book.pk %}>
+      <b>제목: {{ book.title }}</b>
+    </a>
+    {# variable routing #}
+    <p>내용: {{ book.description|truncatewords:5 }}</p>
+    {# DTL: truncatewords. 글자 수 제한 기능 #}
+    <p>작가: {{ book.author }}</p>
+    <p>가격: {{ book.price_sales }}</p>
+    <a href="{% url "books:delete" book.pk %}">삭제하기</a>
+    <a href="{% url "books:update" book.pk %}">수정하기</a>
+    <hr>
+    
+<!--empty는 자동완성 기능이 없다. 직접 입력해야함-->
+{% empty %}
+    <p>검색된 도서가 없습니다.</p>
+{% endfor %}
+
+{% endblock contents %}
+

@@ -48,6 +48,7 @@ def index(request):
         # .filter(필드명=원하는 값)
         # exists(): 존재 여부
         if not Book.objects.filter(isbn=item['isbn']).exists():
+            # 중복이 아닐 경우 새로운 Book 객체 생성
             Book.objects.create(
                 isbn = item['isbn'],
                 title = item['title'],
@@ -60,8 +61,10 @@ def index(request):
     # books = Book.objects.all()
 
     # 필터링 기능 추가
+    # 가격 필터링 값 가져오기
     max_price = request.GET.get('max_price')
 
+    # 도서 목록 필터링
     if max_price:
         # price_sales 값이 max_price 보다 작은 데이터들을 조회
         books = Book.objects.filter(price_sales__lte=max_price)

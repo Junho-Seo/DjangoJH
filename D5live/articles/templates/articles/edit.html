@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Edit</h1>
+  <form action="{% url "articles:update" article.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="title" value="{{ article.title }}">
+    <!--  textarea는 value 속성이 없지만 닫는 태그가 있다. value값은 닫는 태그 앞에 쓰면 된다. -->
+    <textarea name="content" id="">{{ article.content }}</textarea>
+    <input type="submit" value="Edit">
+  </form>
+</body>
+</html>
