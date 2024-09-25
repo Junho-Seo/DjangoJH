@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>수정 페이지</h1>
+
+<form action="{% url 'books:update' book.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% comment %} <label for="isbn">도서번호: </label>
+    <input type="text" name="isbn" value="{{ book.isbn }}">
+    <br>
+
+    <label for="title">제목: </label>
+    <input type="text" name="title" value="{{ book.title }}">
+    <br>
+
+    <label for="description">내용: </label>
+    <textarea name="description" rows="4" cols="30">{{ book.description }}</textarea>
+    <br>
+
+    <label for="price_sales">가격: </label>
+    <input type="number" name="price_sales" value="{{ book.price_sales }}">
+    <br>
+
+    <label for="author">작가: </label>
+    <input type="text" name="author" value="{{ book.author }}">
+    <br>
+
+    
+    <label for="pub_date">출간연도: </label>
+    <input type="date" name="pub_date" value="{{ book.pub_date|date:'Y-m-d' }}">
+    <br> {% endcomment %}
+
+    <button>수정하기</button>
+</form>
+
+{% endblock contents %}

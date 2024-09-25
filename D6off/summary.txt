@@ -1,0 +1,14 @@
+
+알라딘 API 를 활용한 도서 관리 시스템 - 3
+
+메인 주제: form 활용하기
+
+1. Django Form 을 활용하는 방식으로 코드 수정
+  - 생성
+  - 수정
+
+2. widget 을 활용하여 적절한 입력으로 변경
+  - 각 label 을 한글로 출력
+  - descripton 은 textarea 로 출력
+  - pub_date 는 DateField type 으로 수정
+  - price_sales 는 정수 입력으로 (step 을 1 로 수정)

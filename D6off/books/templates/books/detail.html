@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>{{ book.title }}</h1>
+
+<p>도서번호: {{ book.isbn }}</p>
+<p>출간연도: {{ book.pub_date }}</p>
+<p>내용: {{ book.description }}</p>
+<p>작가: {{ book.author }}</p>
+<p>가격: {{ book.price_sales }}</p>
+<a href={% url "books:delete" book.pk %}>삭제하기</a>
+<a href={% url "books:update" book.pk %}>수정하기</a>
+<hr>
+
+{% endblock contents %}
