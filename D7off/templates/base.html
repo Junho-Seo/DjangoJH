@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 관리 시스템</title>
+</head>
+<body>
+    <nav>
+        <a href={% url "books:index" %}>Home</a>
+        <a href={% url "books:create" %}>create</a>
+    </nav>
+
+    {% block contents %}
+    {% endblock contents %}
+    
+</body>
+</html>

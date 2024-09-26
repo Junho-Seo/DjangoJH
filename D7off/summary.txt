@@ -1,0 +1,28 @@
+알라딘 API 를 활용한 도서 관리 시스템 - 4
+
+메인 주제: 이미지 기능 추가
+
+1. 정적 이미지 기능 (STATIC)
+- 개발자가 서버에 미리 올려놓은 파일
+  - ex) image, css 등등
+- 어디다 올려야할까 ?
+  - 장고의 static file 기본 경로(STATIC_URL): <app>/static/
+  - 추가 경로 설정: STATICFILES_DIRS
+- [심화] STATIC_ROOT 설정
+  - 배포 시 정적 파일들을 모아 줄 장소
+  -> 컴퓨터 입장에서는 모여있는 게 훨씬 효율적
+
+
+2. 동적 이미지 기능 (MEDIA)
+- 사용자가 서버에 업로드 하는 파일
+- 어디에 업로드 ?
+  - (settings.py) MEDIA_ROOT: 프로젝트 내 파일들을 저장할 장소
+  - (settings.py) MEDIA_URL: 파일이 제공되는 URL
+- 어떻게 업로드 ?
+  - 핵심 키워드
+    1. models.py: ImageField 사용
+    2. html: enctype="multipart/form-data" form 에 태그 추가
+    3. views.py: request.POST 에는 파일 데이터는 못들어간다.
+    -> request.FILES 를 활용
+- 업로드된 파일을 어떻게 제공할까 ?
+  - img 태그의 src에 경로를 삽입

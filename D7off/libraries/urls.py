@@ -1,0 +1,32 @@
+"""
+URL configuration for libraries project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('books/', include('books.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# 정적 파일은 기본적으로 <app>/static/ 폴더를 찾도록 되어있지만,
+# 동적 파일은 기본 탐색 경로가 없어서, 등록해 주어야 한다.
+
+# 코드 해석:
+# MEDIA_URL로 등록한 경로로 요청이 들어온다면
+# MEDIA_ROOT 디렉토리에서 MEDIA 파일을 찾아야한다.

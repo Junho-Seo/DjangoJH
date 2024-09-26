@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contents %}
+
+<img src="{% static "books/images.png" %}" alt="maple" width='200'>
+
+<h1>환영합니다!</h1>
+
+<p>전체 도서 수: {{ total_count }}권</p>
+
+<!-- 가격 입력 폼 -->
+<form method="GET">
+    <label for="max_price">최대 가격:</label>
+    <input type="number" id="max_price" name="max_price" value="{{ request.GET.max_price }}" step="0.01">
+    <button type="submit">필터</button>
+</form>
+
+<hr>
+
+<!-- 도서 목록 출력 -->
+{% for book in books %}
+    <p><b>번호: {{ forloop.revcounter }}</b></p>
+    <a href={% url "books:detail" book.pk %}><b>제목: {{ book.title }}</b></a>
+    <p>내용: {{ book.description|truncatewords:5 }}</p>
+    <p>작가: {{ book.author }}</p>
+    <p>가격: {{ book.price_sales }}</p>
+    <a href={% url "books:delete" book.pk %}>삭제하기</a>
+    <a href={% url "books:update" book.pk %}>수정하기</a>
+    <hr>
+{% empty %}
+    <p>해당 조건에 맞는 도서가 없습니다.</p>
+{% endfor %}
+
+{% endblock contents %}
