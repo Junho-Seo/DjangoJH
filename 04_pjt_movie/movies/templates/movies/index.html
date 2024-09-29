@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>메인 페이지</h1>
+<img src="{% static 'movies/images/main.png' %}" alt="이미지" width="200">
+<a href="{% url "movies:create" %}">[CREATE]</a>
+
+{% for movie in movies %}
+<ul>
+  <hr>
+  <li>
+    <p>제목: {{ movie.title }}</p>
+    <p>줄거리: {{ movie.description }}</p>
+    {% if movie.cover %}
+      <img src="{{ movie.cover.url }}" alt="포스터">
+    {% endif %}
+    <form action="{% url "movies:detail" movie.pk %}">
+      <input type="submit" value='[DETAIL]'>
+    </form>
+  </li>
+</ul>
+{% empty %}
+  <p>영화 리스트가 없습니다.</p>
+{% endfor %}
+{% endblock content %}

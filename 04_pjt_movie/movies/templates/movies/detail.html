@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>영화 상세 페이지</h1>
+{% if movie.cover %}
+  <img src="{{ movie.cover.url }}" alt="포스터">
+{% endif %}
+<p>제목: {{ movie.title }}</p>
+<p>줄거리ㅏ: {{ movie.description }}</p>
+<hr>
+<form action="{% url "movies:update" movie.pk %}" method='GET'>
+  <input type="submit" value='[UPDATE]'>
+</form>
+<form action="{% url "movies:delete" movie.pk %}" method='POST'>
+  {% csrf_token %}
+  <input type="submit" value='[DELETE]'>
+</form><br>
+<hr>
+<form action="{% url "movies:index" %}" method='GET'>
+  <input type="submit" value='[BACK]'>
+</form>
+{% endblock content %}
