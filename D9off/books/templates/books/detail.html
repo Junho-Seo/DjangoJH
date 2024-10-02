@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>{{ book.title }}</h1>
+
+<p>도서번호: {{ book.isbn }}</p>
+<p>출간연도: {{ book.pub_date }}</p>
+<p>내용: {{ book.description }}</p>
+<p>작가: {{ book.author }}</p>
+<p>가격: {{ book.price_sales }}</p>
+{% if book.local_image %}
+    <p>book.local_image: DB에 저장된 dog.jpg 위치</p>
+    <p>book.local_image.url: 브라우저가 dog.jpg 를 요청하는 경로</p>
+    {{ book.local_image }}
+    <p><img src="{{ book.local_image.url }}" alt="" width="200px"></p>
+{% elif book.external_image %}
+    <p><img src="{{ book.external_image }}" alt="" width="200px"></p>
+{% else %}
+    <p>도서 사진 없음</p>
+{% endif %}
+<a href="{% url 'books:delete' book.pk %}">삭제하기</a>
+<a href="{% url 'books:update' book.pk %}">수정하기</a>
+<hr>
+
+{% endblock contents %}

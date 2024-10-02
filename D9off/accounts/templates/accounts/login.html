@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>로그인</h1>
+
+{% comment %} <form action="{% url "accounts:login" %}" method="POST"> {% endcomment %}
+{% comment %}
+# login_required 사용 후 로그아웃 상태에서 create로 들어간다면?
+# http://127.0.0.1:8000/accounts/login/?next=/books/create/
+# next라는 파라미터로 어디로부터 왔는지 알려준다.
+# 즉 로그인 성공 시 /books/create/로 던져준다
+views.login 함수 참고
+{% endcomment %}
+<form action="" method="POST">  <!--현재 경로로 재요청(로그인 후 바로 이전 요청 페이지로 이동하도록)-->
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button>로그인</button>
+</form>
+{% endblock contents %}

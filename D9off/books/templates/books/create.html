@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block contents %}
+<h1>생성 페이지</h1>
+
+<form action={% url "books:create" %} method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% comment %} 내부 적으로는 아래 두 코드가 반복 렌더링 된다.
+    {{ form.isbn.label_tag }}
+    {{ form.isbn }} {% endcomment %}
+
+    {{ form.as_p }}
+
+    <button>생성하기</button>
+</form>
+
+{% endblock contents %}
